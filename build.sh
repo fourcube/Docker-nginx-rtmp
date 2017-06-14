@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-DOCKER_RUN_IMAGE=nginx-rtmp
+DOCKER_RUN_IMAGE=fourcube/nginx-rtmp
 DOCKER_BUILD_IMAGE=nginx-build
 
 rm -f nginx.tar.gz
@@ -21,7 +21,4 @@ docker rmi ${DOCKER_BUILD_IMAGE}
 
 docker build -t ${DOCKER_RUN_IMAGE} .
 
-docker images 
-docker run -d --name ${DOCKER_RUN_IMAGE} -p 1935:1935 -t ${DOCKER_RUN_IMAGE}
-docker ps -a
-
+docker push ${DOCKER_RUN_IMAGE}
